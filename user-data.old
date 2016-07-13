@@ -1,0 +1,5 @@
+#cloud-config
+rancher:
+  docker:
+    extra_args:
+      - '--registry-mirror=http://192.168.33.1:5000'

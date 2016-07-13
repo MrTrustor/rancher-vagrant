@@ -9,6 +9,7 @@ $box_version = nil
 $rancher_version = 'latest'
 $ip_prefix = '192.168.33'
 $disable_folder_sync = true
+CLOUD_CONFIG_PATH = File.join(File.dirname(__FILE__), "user-data")
 
 # install the vagrant-rancher provisioner plugin if
 # it is not already installed
@@ -133,6 +134,12 @@ Vagrant.configure(2) do |config|
           node.vm.provider 'virtualbox' do |vb|
             vb.memory = box['memory']
           end
+        end
+
+        if File.exist?(CLOUD_CONFIG_PATH)
+          node.vm.provision :file, :source => "#{CLOUD_CONFIG_PATH}", :destination => "/tmp/vagrantfile-user-data"
+          node.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/rancher/conf/cloud-config.d/boot.yml", :privileged => true
+          node.vm.provision :shell, :inline => "system-docker restart docker && sleep 5", :privileged => true
         end
 
         if !box['role'].nil? and box['role'] == 'server'
