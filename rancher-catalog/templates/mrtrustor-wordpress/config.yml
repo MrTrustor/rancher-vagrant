@@ -1,0 +1,9 @@
+name: "MrTrustor's Wordpress"
+description: |
+  This is the catalog entry used during
+  my Rancher hands-on.
+version: 4.4-0
+category: blogging
+maintainer: Theo Chamley
+license: WTFPL
+projectURL: https://github.com/MrTrustor/rancher-catalog/tree/master/kubernetes-templates/mrtrustor-wordpress

@@ -1,0 +1,18 @@
+wordpress:
+  image: wordpress:4.4
+  links:
+    - db:mysql
+  ports:
+    - ${public_port}:80
+
+db:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: ${mysql_password}
+
+wp-endpoint:
+  image: rancher/load-balancer-service
+  ports:
+    - 80:80
+  links:
+    - wordpress:wordpress

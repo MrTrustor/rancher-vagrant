@@ -1,0 +1,17 @@
+.catalog:
+  name: "MrTrustor's Wordpress"
+  version: "4.4-0"
+  description: "Blog tool, publishing platform and CMS"
+  questions:    
+    - variable: public_port
+      description: "public port to access the wordpress site"
+      label: "Public Port"
+      required: true
+      default: "80"
+      type: "int"
+    - variable: mysql_password
+      description: "MySQL Password"
+      label: "MySQL Password"
+      required: true
+      default: "password"
+      type: "string"
